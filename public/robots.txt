@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# When you deploy, set VITE_SITE_URL and uncomment with your live origin:
+# Sitemap: https://YOUR-DOMAIN.com/sitemap.xml

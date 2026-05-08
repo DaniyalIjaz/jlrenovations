@@ -1,0 +1,250 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   JL Renovations — design tokens (gold / ivory / charcoal)
+   Tailwind v4 @theme injects these as utilities (e.g. text-gold-500).
+   ------------------------------------------------------------------ */
+@theme {
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+
+  /* Gold scale (drawn from the logo) */
+  --color-gold-50: #fbf6e9;
+  --color-gold-100: #f5ead0;
+  --color-gold-200: #ecd49a;
+  --color-gold-300: #e0bb66;
+  --color-gold-400: #d4a13e;
+  --color-gold-500: #c8902a; /* primary brand gold */
+  --color-gold-600: #a87420;
+  --color-gold-700: #855a19;
+  --color-gold-800: #5e4011;
+  --color-gold-900: #3a2709;
+
+  /* Charcoal / ink scale */
+  --color-ink-50: #f6f6f7;
+  --color-ink-100: #e9e9eb;
+  --color-ink-200: #c8c8cc;
+  --color-ink-300: #9a9aa1;
+  --color-ink-400: #6e6e76;
+  --color-ink-500: #4b4b52;
+  --color-ink-600: #2f2f35;
+  --color-ink-700: #1f1f24;
+  --color-ink-800: #131318;
+  --color-ink-900: #0a0a0d;
+
+  /* Ivory / cream backgrounds */
+  --color-ivory-50: #fdfcf8;
+  --color-ivory-100: #f8f4ea;
+  --color-ivory-200: #efe7d2;
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    background: var(--color-ivory-50);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Global no-wrap default (per request) for inline UI bits.
+     Headings + body copy still wrap so layout never overflows on mobile. */
+  * {
+    text-wrap: nowrap;
+  }
+  p,
+  li,
+  blockquote,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-ink-800);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--color-gold-500);
+    color: #fff;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reusable utilities / patterns
+   ------------------------------------------------------------------ */
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 480px) {
+    .container-page {
+      padding-inline: 1.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  .section {
+    padding-block: 4rem;
+  }
+  @media (min-width: 640px) {
+    .section {
+      padding-block: 5.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 7rem;
+    }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-gold-600);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-gold-500);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+    will-change: transform;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn-primary {
+    background: var(--color-gold-500);
+    color: #fff;
+    box-shadow: 0 10px 30px -12px rgba(200, 144, 42, 0.6);
+  }
+  .btn-primary:hover {
+    background: var(--color-gold-600);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+  }
+  .btn-dark {
+    background: var(--color-ink-800);
+    color: #fff;
+  }
+  .btn-dark:hover {
+    background: var(--color-ink-900);
+  }
+
+  /* Subtle section divider with gold center bar */
+  .gold-rule {
+    display: inline-block;
+    width: 56px;
+    height: 2px;
+    background: var(--color-gold-500);
+    border-radius: 2px;
+  }
+}
+
+/* Pulsing glow for the before/after slider handle to invite interaction */
+@keyframes pulse-handle {
+  0%, 100% {
+    box-shadow:
+      0 12px 30px -8px rgba(0, 0, 0, 0.55),
+      0 0 0 0 rgba(200, 144, 42, 0.55);
+  }
+  50% {
+    box-shadow:
+      0 12px 30px -8px rgba(0, 0, 0, 0.55),
+      0 0 0 12px rgba(200, 144, 42, 0);
+  }
+}
+.animate-pulse-handle {
+  animation: pulse-handle 2.4s ease-in-out infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
