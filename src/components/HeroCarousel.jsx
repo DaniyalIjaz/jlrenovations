@@ -95,7 +95,7 @@ export default function HeroCarousel() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] md:text-xs uppercase tracking-[0.22em] sm:tracking-[0.28em] text-gold-300 font-semibold"
           >
-            <span className="inline-block h-px w-6 sm:w-8 bg-gold-400" />
+            {/* <span className="inline-block h-px w-6 sm:w-8 bg-gold-400" /> */}
             <span className="whitespace-normal">
               {company.ownership} · {company.established}
             </span>

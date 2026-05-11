@@ -68,7 +68,7 @@ export const services = [
     id: "kitchen",
     title: "Kitchen Remodeling",
     short:
-      "Custom kitchens built for daily life — smart layouts, clean finishes, and craftsmanship that holds up for years.",
+      "Custom kitchens built for daily life smart layouts, clean finishes, and craftsmanship that holds up for years.",
     items: [
       "Kitchen Remodeling",
       "Basement Finishing",
@@ -85,7 +85,7 @@ export const services = [
     id: "bathroom",
     title: "Bathroom Remodeling",
     short:
-      "From refresh to full renovation — tile, fixtures, and finishes installed with precision and lasting durability.",
+      "From refresh to full renovation tile, fixtures, and finishes installed with precision and lasting durability.",
     items: [
       "Bathroom Renovation",
       "Tile Work",
@@ -100,7 +100,7 @@ export const services = [
     id: "painting",
     title: "Painting",
     short:
-      "Flawless finishes that protect and beautify your home — premium paints, expert prep, and lasting results.",
+      "Flawless finishes that protect and beautify your home premium paints, expert prep, and lasting results.",
     items: [
       "Interior Painting Walls, Ceilings & Trim",
       "Exterior Painting & Weatherproofing",
