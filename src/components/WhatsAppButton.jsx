@@ -1,52 +1,77 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronUp } from "lucide-react";
 import { company } from "../content/site";
 
+const SCROLL_THRESHOLD = 300;
+
 export default function WhatsAppButton() {
-  const [show, setShow] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 300);
+    const onScroll = () => setShowScrollTop(window.scrollY > SCROLL_THRESHOLD);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const href = `https://wa.me/${company.whatsappNumber}?text=${encodeURIComponent(
     company.whatsappMessage
   )}`;
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.a
-          key="wa"
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat with JL Renovations on WhatsApp"
-          initial={{ opacity: 0, y: 24, scale: 0.85 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 24, scale: 0.85 }}
-          transition={{ type: "spring", stiffness: 240, damping: 20 }}
-          className="group fixed bottom-5 right-5 md:bottom-7 md:right-7 z-[60] inline-flex items-center gap-3 rounded-full bg-[#25D366] hover:bg-[#1ebe5a] text-white px-4 py-3 md:px-5 md:py-3.5 shadow-[0_18px_40px_-15px_rgba(37,211,102,0.55)] ring-1 ring-white/20 transition-colors"
-        >
-          <span className="relative flex h-9 w-9 items-center justify-center">
-            <span
-              aria-hidden
-              className="absolute inset-0 rounded-full bg-white/30 animate-ping opacity-75"
-            />
-            <WhatsAppIcon />
+    <div
+      role="region"
+      aria-label="Quick actions"
+      className="fixed bottom-5 right-5 md:bottom-7 md:right-7 z-[60] flex flex-col items-end gap-3"
+    >
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            key="scroll-top"
+            type="button"
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22 }}
+            className="inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-ink-900/92 text-white shadow-lg shadow-black/25 ring-1 ring-white/15 hover:bg-ink-900 hover:ring-gold-400/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 transition-all"
+          >
+            <ChevronUp size={22} strokeWidth={2.25} aria-hidden />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with JL Renovations on WhatsApp"
+        initial={{ opacity: 0, y: 12, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ type: "spring", stiffness: 240, damping: 20 }}
+        className="group inline-flex items-center gap-3 rounded-full bg-[#25D366] hover:bg-[#1ebe5a] text-white px-4 py-3 md:px-5 md:py-3.5 shadow-[0_18px_40px_-15px_rgba(37,211,102,0.55)] ring-1 ring-white/20 transition-colors"
+      >
+        <span className="relative flex h-9 w-9 items-center justify-center">
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-full bg-white/30 animate-ping opacity-75"
+          />
+          <WhatsAppIcon />
+        </span>
+        <span className="hidden sm:flex flex-col leading-tight">
+          <span className="text-[10px] uppercase tracking-[0.22em] opacity-80">
+            Chat with us
           </span>
-          <span className="hidden sm:flex flex-col leading-tight">
-            <span className="text-[10px] uppercase tracking-[0.22em] opacity-80">
-              Chat with us
-            </span>
-            <span className="text-sm font-semibold">WhatsApp</span>
-          </span>
-        </motion.a>
-      )}
-    </AnimatePresence>
+          <span className="text-sm font-semibold">WhatsApp</span>
+        </span>
+      </motion.a>
+    </div>
   );
 }
 

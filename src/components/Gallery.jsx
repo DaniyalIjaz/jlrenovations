@@ -40,10 +40,10 @@ export default function Gallery() {
   const hasMore = visibleCount < fullList.length;
   const allShown = !hasMore && fullList.length > PAGE_SIZE;
 
-  // Reset pagination when category changes
-  useEffect(() => {
+  const selectCategory = (id) => {
+    setActiveCat(id);
     setPageCount(1);
-  }, [activeCat]);
+  };
 
   const openLightbox = (i) => setLightbox({ images: visible, index: i });
   const closeLightbox = () => setLightbox(null);
@@ -92,7 +92,7 @@ export default function Gallery() {
         {/* Visual category chips with thumbnail previews */}
         <ThumbnailChipBar
           activeCat={activeCat}
-          onChange={setActiveCat}
+          onChange={selectCategory}
           allLabel={ALL.label}
           allId={ALL.id}
         />

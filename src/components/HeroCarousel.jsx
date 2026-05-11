@@ -1,22 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Images, Sparkles } from "lucide-react";
+import { ClipboardList, Images, Sparkles } from "lucide-react";
 import { company } from "../content/site";
 import { heroImages } from "../content/media";
+import QuoteModal from "./QuoteModal";
 
 const FADE_DURATION = 1100; // ms cross-fade between bg images
-const AUTO_INTERVAL = 3000; // ms
+const AUTO_INTERVAL = 2000; // ms
 
 const HERO_CONTENT = {
-  headline: "Real Transformations",
-  subheadline: "The story of every finished detail.",
+  headline: "Where Craftsmanship",
+  subheadline: "Meets Timeless Design",
   description:
-    "Where dated becomes timeless. A glimpse into our work, captured on site and shaped by decades of craft, finished to last generations.",
+    "JL Renovations brings Old World attention to detail to every project from bespoke decks and fine carpentry to full home transformations built to last generations.",
 };
 
 export default function HeroCarousel() {
   const bgs = heroImages.length ? heroImages : [null];
   const [active, setActive] = useState(0);
+  const [quoteOpen, setQuoteOpen] = useState(false);
   const intervalRef = useRef(null);
   const sectionRef = useRef(null);
 
@@ -77,9 +79,9 @@ export default function HeroCarousel() {
             }}
           />
         ))}
-        {/* Overlay gradient for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/85" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
+        {/* Overlay gradient for legibility (lighter so photos read brighter) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/42 via-black/38 to-black/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/38 via-black/10 to-transparent" />
       </div>
 
       {/* Preload the first hero image for fast LCP */}
@@ -126,6 +128,7 @@ export default function HeroCarousel() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-7 sm:mt-9 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3"
           >
+     
             <a
               href="#transformations"
               className="group inline-flex items-center justify-center gap-3 rounded-full bg-white/10 px-5 py-3 ring-1 ring-white/15 hover:ring-gold-400/70 hover:bg-white/15 transition-all cursor-pointer w-full sm:w-auto"
@@ -156,6 +159,22 @@ export default function HeroCarousel() {
                 />
               </span>
             </a>
+            <button
+              type="button"
+              onClick={() => setQuoteOpen(true)}
+              className="group inline-flex items-center justify-center gap-3 rounded-full btn btn-primary px-5 py-3 w-full sm:w-auto"
+            >
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em]">
+                Get a quote
+              </span>
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full ring-1 ring-white/25 bg-white/10 transition-all duration-300 group-hover:bg-white/20">
+                <ClipboardList
+                  size={18}
+                  aria-hidden
+                  className="text-white"
+                />
+              </span>
+            </button>
           </motion.div>
         </div>
       </div>
@@ -164,6 +183,8 @@ export default function HeroCarousel() {
       <div className="absolute inset-x-0 bottom-6 flex justify-center pointer-events-none">
         <div className="h-10 w-[1px] bg-gradient-to-b from-transparent via-white/60 to-transparent" />
       </div>
+
+      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </section>
   );
 }

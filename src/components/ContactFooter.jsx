@@ -1,7 +1,9 @@
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { ArrowRight, Mail, MapPinned, Phone } from "lucide-react";
 import { company } from "../content/site";
 import logo from "../assets/logo.png";
 import InstagramIcon from "./InstagramIcon";
+import FacebookIcon from "./FacebookIcon";
+import TikTokIcon from "./TikTokIcon";
 
 export default function ContactFooter() {
   const waUrl = `https://wa.me/${company.whatsappNumber}?text=${encodeURIComponent(
@@ -68,30 +70,6 @@ export default function ContactFooter() {
             <p className="mt-5 text-xs italic text-gold-300/90">
               "Renovate Your Legacy"
             </p>
-
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href={company.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Instagram ${company.instagramHandle}`}
-                className="group inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_-4px_rgba(212,164,74,0.4)]"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.12) 100%)",
-                }}
-              >
-                <InstagramIcon size={17} />
-              </a>
-              <a
-                href={company.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-white/60 hover:text-gold-300 transition-colors"
-              >
-                {company.instagramHandle}
-              </a>
-            </div>
           </div>
 
           <div className="md:col-span-3">
@@ -99,40 +77,156 @@ export default function ContactFooter() {
               Contact
             </h3>
             <ul className="mt-5 space-y-4 text-sm text-white/80">
-              <li className="flex items-start gap-3">
-                <MapPin size={16} className="mt-0.5 text-gold-400" aria-hidden />
-                <span>{company.address}</span>
+              <li className="flex gap-3">
+                <span
+                  className="mt-0.5 inline-flex  shrink-0 items-center justify-center text-gold-400 "
+                  aria-hidden
+                >
+                  <MapPinned className="size-[18px]" strokeWidth={2.25} />
+                </span>
+                <span className="min-w-0 pt-1.5 leading-relaxed text-white/85">
+                  {company.address}
+                </span>
               </li>
               {company.phones.map((p) => (
                 <li key={p.tel} className="flex items-start gap-3">
-                  <Phone size={16} className="mt-0.5 text-gold-400" aria-hidden />
-                  <a href={`tel:${p.tel}`} className="hover:text-gold-300">
-                    {p.value}
-                  </a>
+                  <Phone size={16} className="mt-0.5 shrink-0 text-gold-400" aria-hidden />
+                  <span className="select-text text-white/85">{p.value}</span>
                 </li>
               ))}
               <li className="flex items-start gap-3">
-                <Mail size={16} className="mt-0.5 text-gold-400" aria-hidden />
-                <a
-                  href={`mailto:${company.email}`}
-                  className="hover:text-gold-300 break-all"
-                >
+                <Mail size={16} className="mt-0.5 shrink-0 text-gold-400" aria-hidden />
+                <span className="select-text break-all text-white/85">
                   {company.email}
-                </a>
+                </span>
               </li>
             </ul>
           </div>
 
-          <div className="md:col-span-4">
+          <div className="md:col-span-4 min-w-0">
             <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
-              Trust & Standards
+              Find us
             </h3>
-            <ul className="mt-5 space-y-3 text-sm text-white/75">
-              <li>{company.ownership}</li>
-              <li>{company.established}</li>
-              <li>Quality You Can Trust</li>
-              <li>Free in-home estimates</li>
-            </ul>
+            <div className="mt-4 w-full overflow-hidden rounded-lg ring-1 ring-white/10 bg-white/[0.02] h-32 sm:h-36">
+              <iframe
+                title={`Google Map — ${company.shortName}`}
+                src={company.googleMapsEmbedSrc}
+                className="h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+            <a
+              href={company.googleMapsPlaceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-xs text-white/55 hover:text-gold-300 transition-colors"
+            >
+              Open in Google Maps
+              <ArrowRight size={14} aria-hidden />
+            </a>
+          </div>
+
+          {/* Full-width row on desktop (spans all 12 columns) */}
+          <div className="w-full border-t border-white/10 pt-10 md:col-span-12 md:col-start-1">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-gold-400 font-semibold">
+              Follow Us
+            </p>
+            <div className="mt-4 flex flex-col gap-3 md:flex-row md:gap-3 md:items-stretch">
+              <a
+                href={company.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Instagram ${company.instagramHandle}`}
+                className="group flex min-w-0 flex-1 items-center gap-3 rounded-xl bg-white/[0.03] ring-1 ring-white/10 hover:ring-gold-400/60 hover:bg-white/[0.05] transition-all p-3.5"
+              >
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-gold-400/25"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.12) 100%)",
+                  }}
+                >
+                  <InstagramIcon size={17} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[10px] uppercase tracking-[0.22em] text-gold-300/80 font-semibold">
+                    Instagram
+                  </span>
+                  <span className="block text-sm text-white/90 truncate">
+                    {company.instagramHandle}
+                  </span>
+                </span>
+                <ArrowRight
+                  size={14}
+                  aria-hidden
+                  className="text-white/30 group-hover:text-gold-300 group-hover:translate-x-1 transition-all shrink-0"
+                />
+              </a>
+
+              <a
+                href={company.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Facebook ${company.facebookHandle}`}
+                className="group flex min-w-0 flex-1 items-center gap-3 rounded-xl bg-white/[0.03] ring-1 ring-white/10 hover:ring-gold-400/60 hover:bg-white/[0.05] transition-all p-3.5"
+              >
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-gold-400/25"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.12) 100%)",
+                  }}
+                >
+                  <FacebookIcon size={17} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[10px] uppercase tracking-[0.22em] text-gold-300/80 font-semibold">
+                    Facebook
+                  </span>
+                  <span className="block text-sm text-white/90 truncate">
+                    {company.facebookHandle}
+                  </span>
+                </span>
+                <ArrowRight
+                  size={14}
+                  aria-hidden
+                  className="text-white/30 group-hover:text-gold-300 group-hover:translate-x-1 transition-all shrink-0"
+                />
+              </a>
+
+              <a
+                href={company.tiktokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`TikTok ${company.tiktokHandle}`}
+                className="group flex min-w-0 flex-1 items-center gap-3 rounded-xl bg-white/[0.03] ring-1 ring-white/10 hover:ring-gold-400/60 hover:bg-white/[0.05] transition-all p-3.5"
+              >
+                <span
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-gold-400/25"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.12) 100%)",
+                  }}
+                >
+                  <TikTokIcon size={17} />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[10px] uppercase tracking-[0.22em] text-gold-300/80 font-semibold">
+                    TikTok
+                  </span>
+                  <span className="block text-sm text-white/90 truncate">
+                    {company.tiktokHandle}
+                  </span>
+                </span>
+                <ArrowRight
+                  size={14}
+                  aria-hidden
+                  className="text-white/30 group-hover:text-gold-300 group-hover:translate-x-1 transition-all shrink-0"
+                />
+              </a>
+            </div>
           </div>
         </div>
 

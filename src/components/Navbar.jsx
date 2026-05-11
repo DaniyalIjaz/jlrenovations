@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, MessageCircle, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "../lib/cn";
 import logo from "../assets/logo.png";
 import { company, navLinks } from "../content/site";
 import InstagramIcon from "./InstagramIcon";
+import FacebookIcon from "./FacebookIcon";
+import TikTokIcon from "./TikTokIcon";
 import ContactModal from "./ContactModal";
 
 export default function Navbar() {
@@ -42,9 +44,6 @@ export default function Navbar() {
   }, [open]);
 
   const close = () => setOpen(false);
-  const waUrl = `https://wa.me/${company.whatsappNumber}?text=${encodeURIComponent(
-    company.whatsappMessage
-  )}`;
 
   return (
     <>
@@ -124,89 +123,127 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a
-            href={company.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Follow us on Instagram (${company.instagramHandle})`}
-            className="group inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_-4px_rgba(212,164,74,0.5)]"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.08) 100%)",
-            }}
-          >
-            <InstagramIcon size={17} />
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={company.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Follow us on Instagram (${company.instagramHandle})`}
+              className="group inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_-4px_rgba(212,164,74,0.5)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.08) 100%)",
+              }}
+            >
+              <InstagramIcon size={17} />
+            </a>
+            <a
+              href={company.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Follow us on Facebook (${company.facebookHandle})`}
+              className="group inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_-4px_rgba(212,164,74,0.5)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.08) 100%)",
+              }}
+            >
+              <FacebookIcon size={17} />
+            </a>
+            <a
+              href={company.tiktokUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Follow us on TikTok (${company.tiktokHandle})`}
+              className="group inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_-4px_rgba(212,164,74,0.5)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.08) 100%)",
+              }}
+            >
+              <TikTokIcon size={17} />
+            </a>
+          </div>
           <span aria-hidden className="h-6 w-px bg-white/15" />
           <button
             type="button"
             onClick={openContact}
-            className="group inline-flex items-center gap-3 rounded-full bg-white/5 pl-5 pr-2.5 py-2 ring-1 ring-white/10 hover:ring-gold-400/60 hover:bg-white/10 transition-all cursor-pointer"
+            className="group inline-flex cursor-pointer items-center justify-center gap-3 rounded-full btn btn-primary px-5 py-2"
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 group-hover:text-white transition-colors">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em]">
               Contact Us
             </span>
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full ring-1 ring-white/15 bg-white/5 transition-all duration-300 group-hover:bg-gold-500 group-hover:ring-gold-400">
-              <Mail
-                size={16}
-                aria-hidden
-                className="text-gold-300 group-hover:text-ink-900 transition-colors"
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/25 transition-all duration-300 group-hover:bg-white/20">
+              <Mail size={18} aria-hidden className="text-white" />
+            </span>
+          </button>
+        </div>
+
+        {/* Mobile: Contact + hamburger (social links live inside the menu) */}
+        <div className="lg:hidden flex items-center gap-3">
+          <button
+            type="button"
+            onClick={openContact}
+            className="group inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full btn btn-primary px-4 py-4 sm:gap-3 sm:px-5 sm:py-3"
+          >
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] sm:text-[11px] sm:tracking-[0.22em]">
+              Contact Us
+            </span>
+
+          </button>
+          {/* Hamburger ↔ cross morph (pure CSS transforms — buttery smooth) */}
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+            className={cn(
+              "lg:hidden relative inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300",
+              open
+                ? "bg-gold-500 ring-1 ring-gold-300"
+                : "bg-white/10 hover:bg-white/20"
+            )}
+          >
+            <span
+              aria-hidden
+              className="relative block h-4 w-5"
+              data-open={open}
+            >
+              <span
+                className={cn(
+                  "absolute left-0 right-0 h-[2px] rounded-full origin-center transition-[transform,top,background-color] duration-300 ease-[cubic-bezier(0.65,0.05,0.36,1)]",
+                  open ? "bg-ink-900" : "bg-white"
+                )}
+                style={{
+                  top: open ? "calc(50% - 1px)" : "0px",
+                  transform: open ? "rotate(45deg)" : "rotate(0deg)",
+                }}
+              />
+              <span
+                className={cn(
+                  "absolute left-0 right-0 top-[calc(50%-1px)] h-[2px] rounded-full transition-[opacity,transform] duration-200 ease-out",
+                  open ? "bg-ink-900" : "bg-white"
+                )}
+                style={{
+                  opacity: open ? 0 : 1,
+                  transform: open ? "scaleX(0.4)" : "scaleX(1)",
+                }}
+              />
+              <span
+                className={cn(
+                  "absolute left-0 right-0 h-[2px] rounded-full origin-center transition-[transform,top,background-color] duration-300 ease-[cubic-bezier(0.65,0.05,0.36,1)]",
+                  open ? "bg-ink-900" : "bg-white"
+                )}
+                style={{
+                  top: open ? "calc(50% - 1px)" : "calc(100% - 2px)",
+                  transform: open ? "rotate(-45deg)" : "rotate(0deg)",
+                }}
               />
             </span>
           </button>
         </div>
 
-        {/* Hamburger ↔ cross morph (pure CSS transforms — buttery smooth) */}
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
-          className={cn(
-            "lg:hidden relative inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300",
-            open
-              ? "bg-gold-500 ring-1 ring-gold-300"
-              : "bg-white/10 hover:bg-white/20"
-          )}
-        >
-          <span
-            aria-hidden
-            className="relative block h-4 w-5"
-            data-open={open}
-          >
-            <span
-              className={cn(
-                "absolute left-0 right-0 h-[2px] rounded-full origin-center transition-[transform,top,background-color] duration-300 ease-[cubic-bezier(0.65,0.05,0.36,1)]",
-                open ? "bg-ink-900" : "bg-white"
-              )}
-              style={{
-                top: open ? "calc(50% - 1px)" : "0px",
-                transform: open ? "rotate(45deg)" : "rotate(0deg)",
-              }}
-            />
-            <span
-              className={cn(
-                "absolute left-0 right-0 top-[calc(50%-1px)] h-[2px] rounded-full transition-[opacity,transform] duration-200 ease-out",
-                open ? "bg-ink-900" : "bg-white"
-              )}
-              style={{
-                opacity: open ? 0 : 1,
-                transform: open ? "scaleX(0.4)" : "scaleX(1)",
-              }}
-            />
-            <span
-              className={cn(
-                "absolute left-0 right-0 h-[2px] rounded-full origin-center transition-[transform,top,background-color] duration-300 ease-[cubic-bezier(0.65,0.05,0.36,1)]",
-                open ? "bg-ink-900" : "bg-white"
-              )}
-              style={{
-                top: open ? "calc(50% - 1px)" : "calc(100% - 2px)",
-                transform: open ? "rotate(-45deg)" : "rotate(0deg)",
-              }}
-            />
-          </span>
-        </button>
       </div>
 
       {/* Mobile menu panel (sits on top of the blurred backdrop) */}
@@ -268,6 +305,7 @@ export default function Navbar() {
                   ))}
                 </ul>
 
+                {/* Social row */}
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -275,56 +313,56 @@ export default function Navbar() {
                     duration: 0.3,
                     delay: 0.04 + navLinks.length * 0.04,
                   }}
-                  className="mt-6 grid grid-cols-1 gap-3"
-                >
-                  <button
-                    type="button"
-                    onClick={openContact}
-                    className="btn btn-primary !py-3 text-xs justify-center cursor-pointer"
-                  >
-                    <Mail size={14} aria-hidden />
-                    Contact Us
-                  </button>
-                  <a
-                    href={waUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={close}
-                    className="btn !py-3 text-xs justify-center !bg-[#25D366] !text-white hover:!bg-[#1ebe5a]"
-                  >
-                    <MessageCircle size={14} aria-hidden />
-                    WhatsApp
-                  </a>
-                </motion.div>
-
-                {/* Social row */}
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.3,
-                    delay: 0.08 + navLinks.length * 0.04,
-                  }}
-                  className="mt-5 flex items-center gap-3"
+                  className="mt-6 flex items-center gap-3"
                 >
                   <span className="text-[10px] uppercase tracking-[0.22em] text-white/40 font-semibold">
                     Follow Us
                   </span>
-                  <span aria-hidden className="h-px flex-1 bg-white/10" />
-                  <a
-                    href={company.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={close}
-                    aria-label={`Instagram ${company.instagramHandle}`}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(200,144,42,0.12) 100%)",
-                    }}
-                  >
-                    <InstagramIcon size={18} />
-                  </a>
+                  <span aria-hidden className="h-px flex-1 bg-white/10 min-w-[1rem]" />
+                  <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                    <a
+                      href={company.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={close}
+                      aria-label={`Instagram ${company.instagramHandle}`}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(200,144,42,0.12) 100%)",
+                      }}
+                    >
+                      <InstagramIcon size={18} />
+                    </a>
+                    <a
+                      href={company.facebookUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={close}
+                      aria-label={`Facebook ${company.facebookHandle}`}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(200,144,42,0.12) 100%)",
+                      }}
+                    >
+                      <FacebookIcon size={18} />
+                    </a>
+                    <a
+                      href={company.tiktokUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={close}
+                      aria-label={`TikTok ${company.tiktokHandle}`}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-white/15 hover:ring-gold-400 transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(200,144,42,0.12) 100%)",
+                      }}
+                    >
+                      <TikTokIcon size={18} />
+                    </a>
+                  </div>
                 </motion.div>
 
                 <p className="mt-5 text-[10px] uppercase tracking-[0.22em] text-white/40">

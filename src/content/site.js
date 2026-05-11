@@ -10,6 +10,12 @@ export const company = {
   ownership: "Family-Owned & Operated",
   baseCity: "Linden, NJ",
   address: "529 E Blancke St, Linden, NJ 07036",
+  /** Dropped pin from Google Maps (same location as embed). */
+  googleMapsPlaceUrl:
+    "https://www.google.com/maps/place/40%C2%B038'11.6%22N+74%C2%B015'04.9%22W/@40.6365662,-74.2539482,17z/data=!3m1!4b1!4m4!3m3!8m2!3d40.6365662!4d-74.2513733?hl=en&entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
+  /** iframe `src` — lat/lng match `googleMapsPlaceUrl` pin. */
+  googleMapsEmbedSrc:
+    "https://www.google.com/maps?q=40.6365662,-74.2513733&z=17&hl=en&output=embed",
   phones: [
     { label: "Office", value: "(201) 890-9697", tel: "+12018909697" },
     { label: "Mobile", value: "(908) 956-1577", tel: "+19089561577" },
@@ -21,6 +27,11 @@ export const company = {
   instagramUrl:
     "https://www.instagram.com/llcrenovationsjl?igsh=MXd5a2prNThveHBwbQ==",
   instagramHandle: "@llcrenovationsjl",
+  facebookUrl:
+    "https://www.facebook.com/share/18d7QTwV55/?mibextid=wwXIfr",
+  facebookHandle: "JL Renovations LLC",
+  tiktokUrl: "https://www.tiktok.com/@jlrenovationsllc?_r=1&_t=ZT-96FR1vA4a1V",
+  tiktokHandle: "@jlrenovationsllc",
 };
 
 export const navLinks = [
@@ -28,8 +39,7 @@ export const navLinks = [
   { id: "services", label: "Services" },
   { id: "gallery", label: "Our Work" },
   { id: "team", label: "Team" },
-  { id: "areas", label: "Service Areas" },
-  { id: "contact", label: "Contact" },
+  { id: "areas", label: "Areas We Serve" },
 ];
 
 export const heroSlides = [
@@ -92,7 +102,7 @@ export const services = [
     short:
       "Flawless finishes that protect and beautify your home — premium paints, expert prep, and lasting results.",
     items: [
-      "Interior Painting — Walls, Ceilings & Trim",
+      "Interior Painting Walls, Ceilings & Trim",
       "Exterior Painting & Weatherproofing",
       "Deck & Fence Staining",
       "Cabinet Painting & Refinishing",

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote, User } from "lucide-react";
-import { ceoMessage, company } from "../content/site";
+import { ceoMessage } from "../content/site";
 import { julianImage } from "../content/media";
 
 export default function CeoMessage() {

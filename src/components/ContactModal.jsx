@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { company } from "../content/site";
 import InstagramIcon from "./InstagramIcon";
+import FacebookIcon from "./FacebookIcon";
+import TikTokIcon from "./TikTokIcon";
 
 const backdrop = {
   hidden: { opacity: 0 },
@@ -145,11 +147,7 @@ export default function ContactModal({ open, onClose }) {
                   Let's talk about your{" "}
                   <span className="italic text-gold-400">project</span>
                 </h2>
-                <p className="mt-2 text-sm sm:text-base text-white/70 max-w-xl">
-                  Family-owned, no pressure, free in-home estimates. Reach out
-                  the way that's easiest for you. We typically respond within
-                  the hour.
-                </p>
+            
               </motion.div>
 
               {/* Contact rows */}
@@ -216,26 +214,77 @@ export default function ContactModal({ open, onClose }) {
                     className="text-white/30 group-hover:text-gold-300 group-hover:translate-x-1 transition-all"
                   />
                 </motion.a>
-              </div>
 
-              {/* CTAs */}
-              <motion.div
-                custom={7}
-                variants={item}
-                initial="hidden"
-                animate="show"
-                className="mt-6 sm:mt-8"
-              >
-                <a
-                  href={waUrl}
+                <motion.a
+                  custom={7}
+                  variants={item}
+                  initial="hidden"
+                  animate="show"
+                  href={company.facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn justify-center !bg-[#25D366] !text-white hover:!bg-[#1ebe5a] w-full"
+                  className="group flex items-center gap-3 rounded-xl bg-white/[0.03] ring-1 ring-white/10 hover:ring-gold-400/60 hover:bg-white/[0.05] transition-all p-3.5"
                 >
-                  <MessageCircle size={16} aria-hidden />
-                  Message on WhatsApp
-                </a>
-              </motion.div>
+                  <span
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-white/10 shrink-0"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.12) 100%)",
+                    }}
+                  >
+                    <FacebookIcon size={18} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[10px] uppercase tracking-[0.22em] text-gold-300/80 font-semibold">
+                      Facebook
+                    </span>
+                    <span className="block text-sm text-white/90 truncate">
+                      {company.facebookHandle}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    size={14}
+                    aria-hidden
+                    className="text-white/30 group-hover:text-gold-300 group-hover:translate-x-1 transition-all shrink-0"
+                  />
+                </motion.a>
+
+                <motion.a
+                  custom={8}
+                  variants={item}
+                  initial="hidden"
+                  animate="show"
+                  href={company.tiktokUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 rounded-xl bg-white/[0.03] ring-1 ring-white/10 hover:ring-gold-400/60 hover:bg-white/[0.05] transition-all p-3.5"
+                >
+                  <span
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-lg ring-1 ring-white/10 shrink-0"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(200,144,42,0.12) 100%)",
+                    }}
+                  >
+                    <TikTokIcon size={18} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[10px] uppercase tracking-[0.22em] text-gold-300/80 font-semibold">
+                      TikTok
+                    </span>
+                    <span className="block text-sm text-white/90 truncate">
+                      {company.tiktokHandle}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    size={14}
+                    aria-hidden
+                    className="text-white/30 group-hover:text-gold-300 group-hover:translate-x-1 transition-all shrink-0"
+                  />
+                </motion.a>
+              </div>
+
+       
 
               <p className="mt-5 text-[10px] uppercase tracking-[0.22em] text-white/40">
                 Serving {company.baseCity} & surrounding communities

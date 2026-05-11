@@ -1,6 +1,11 @@
 // Image manifest powered by Vite's import.meta.glob.
 // All images live in src/assets/images/<Category>/* and are bundled with hashed names.
 
+import heroCarousel1 from "../assets/images/HeroCarousel/1.jpg";
+import heroCarousel2 from "../assets/images/HeroCarousel/2.jpg";
+import heroCarousel3 from "../assets/images/HeroCarousel/3.jpg";
+import heroCarousel4 from "../assets/images/HeroCarousel/4.jpg";
+
 const modules = import.meta.glob("../assets/images/**/*.{jpg,jpeg,png,webp}", {
   eager: true,
   import: "default",
@@ -65,17 +70,18 @@ export const allGalleryImages = galleryCategories.flatMap((c) =>
   c.images.map((src) => ({ src, category: c.label }))
 );
 
-// Hero carousel background images: pick 1-2 strong shots from top categories.
 const pick = (cat, idx = 0) => {
   const list = buckets[cat];
   return list && list[idx] ? list[idx] : null;
 };
 
-// Hero carousel background images: ONLY use the dedicated folder, and keep it to 2 images.
+// Hero carousel: fixed order (1–4) from `src/assets/images/HeroCarousel/`.
 export const heroImages = [
-  pick("HeroCarousel", 0),
-  pick("HeroCarousel", 1),
-].filter(Boolean);
+  heroCarousel1,
+  heroCarousel2,
+  heroCarousel3,
+  heroCarousel4,
+];
 
 // Service cards imagery (used in Services section).
 export const serviceImages = {
