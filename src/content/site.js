@@ -17,7 +17,7 @@ export const company = {
   googleMapsEmbedSrc:
     "https://www.google.com/maps?q=40.6365662,-74.2513733&z=17&hl=en&output=embed",
   phones: [
-    { label: "Office", value: "(201) 890-9697", tel: "+12018909697" },
+    { label: "Office", value: "(201) 893-3146", tel: "+12018933146" },
     { label: "Mobile", value: "(908) 956-1577", tel: "+19089561577" },
   ],
   email: "jlrenovations689@gmail.com",
